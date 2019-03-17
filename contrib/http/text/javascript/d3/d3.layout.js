@@ -435,7 +435,7 @@ d3.layout.force = function() {
           m = neighbors.length,
           x;
       while (++j < m) if (!isNaN(x = neighbors[j][dimension])) return x;
-      return Math.random() * size;
+      return 0.5 * size;
     }
 
     // initialize neighbors lazily
@@ -533,8 +533,8 @@ function d3_layout_forceAccumulate(quad, alpha, charges) {
   if (quad.point) {
     // jitter internal nodes that are coincident
     if (!quad.leaf) {
-      quad.point.x += Math.random() - .5;
-      quad.point.y += Math.random() - .5;
+      quad.point.x += 0.5 - .5;
+      quad.point.y += 0.5 - .5;
     }
     var k = alpha * charges[quad.point.index];
     quad.charge += quad.pointCharge = k;

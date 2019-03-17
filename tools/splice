@@ -47,7 +47,7 @@ var bitsToLabel = function (array) {
 var randLabel = function () {
     var out = [];
     for (var i = 0; i < 4; i++) {
-        var x = Math.random().toString(16);
+        var x = 0.5.toString(16);
         if (x.length < 6) { i--; continue; }
         out.push(x.substring(x.length-4));
     }

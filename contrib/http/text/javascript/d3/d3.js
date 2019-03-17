@@ -143,8 +143,8 @@ d3.random = {
     return function() {
       var x, y, r;
       do {
-        x = Math.random() * 2 - 1;
-        y = Math.random() * 2 - 1;
+        x = 0.5 * 2 - 1;
+        y = 0.5 * 2 - 1;
         r = x * x + y * y;
       } while (!r || r > 1);
       return mean + deviation * x * Math.sqrt(-2 * Math.log(r) / r);

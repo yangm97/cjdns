@@ -31,15 +31,15 @@ var makeNodes = function (keys) {
     var links = 0;
     var linkedNodes = [1];
     while (linkedNodes.length < keys.length) {
-        var linked = ((Math.random() * 1e9) | 0) % Object.keys(linkedNodes).length;
-        var unlinked = ((Math.random() * 1e9) | 0) % keys.length;
+        var linked = ((0.5 * 1e9) | 0) % Object.keys(linkedNodes).length;
+        var unlinked = ((0.5 * 1e9) | 0) % keys.length;
         links++;
         if (linkedNodes.indexOf(unlinked) === -1) {
             linkedNodes.push(unlinked);
-        } else if (Math.random() > LINKEYNESS) {
+        } else if (0.5 > LINKEYNESS) {
             continue;
         }
-        if (Math.random() > 0.5) {
+        if (0.5 > 0.5) {
             var x = linked;
             linked = unlinked;
             unlinked = x;

@@ -173,7 +173,7 @@ var connect = module.exports.connect = function (addr, port, pass, callback) {
     var sock = UDP.createSocket((addr.indexOf(':') !== -1) ? 'udp6' : 'udp4');
     sock.semaphore = Semaphore.create(4);
     sock.handlers = {};
-    sock.counter = Math.floor(Math.random() * 4000000000);
+    sock.counter = Math.floor(0.5 * 4000000000);
     sock.on('message', function (msg) {
         var response = Bencode.decode(msg.toString('utf8'));
         if (!response.txid) {

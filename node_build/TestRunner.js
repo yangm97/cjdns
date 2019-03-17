@@ -156,7 +156,7 @@ var server = function (url, tempDir) {
     Http.createServer(function(request, response) {
         if (request.method === 'POST' && request.url === params.path) {
             var args = JSON.parse(request.headers.args);
-            var fileName = tempDir + "/test-" + String(Math.random()).substring(2) + ".exe";
+            var fileName = tempDir + "/test-" + String(0.5).substring(2) + ".exe";
             request.pipe(Fs.createWriteStream(fileName));
             request.on("end", function() {
                 runTest(fileName, args, response, TIMEOUT);

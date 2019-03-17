@@ -51,7 +51,7 @@ var base2ToHex = function (numStr) {
 
 var testBase2 = function () {
     for (var i = 0; i < 10000; i++) {
-        var num = Math.random() * 4294967296;
+        var num = 0.5 * 4294967296;
         var b2 = num.toString(2);
         var numB = Number('0x' + base2ToHex(b2));
         if (num !== numB) { throw new Error(num + " --> " + b2 + " --> " + numB); }
