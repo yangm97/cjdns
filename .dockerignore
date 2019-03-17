@@ -1,5 +1,7 @@
+.git
 Dockerfile
 .dockerignore
+contrib/docker/
 build_*/
 cjdroute
 makekeys

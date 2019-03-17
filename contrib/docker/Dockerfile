@@ -1,26 +1,19 @@
-FROM alpine:3.6
-MAINTAINER Lars Gierth <larsg@systemli.org>
+FROM buildpack-deps AS builder
 
-RUN apk add --update nodejs bash python git build-base linux-headers
-
-ADD . /src
+RUN apt-get update && \
+    apt-get install -y nodejs
 
 WORKDIR /src
 
-RUN adduser -D -h /etc/cjdns -u 1000 cjdns \
-    && rm -rf build_* && ./do \
-    && cp cjdroute /usr/bin \
-    && cp -r tools/* /usr/bin \
-    && cp makekeys \
-          mkpasswd \
-          privatetopublic \
-          publictoip6 \
-          randombytes \
-          sybilsim /usr/bin \
-    && cp contrib/docker/entrypoint.sh / \
-    && rm -rf /src /var/cache/apk/* \
-    && apk del --purge python build-base linux-headers
+ADD . .
 
-VOLUME [ "/etc/cjdns" ]
+RUN ./do
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+
+
+# FROM scratch
+FROM gcr.io/distroless/cc
+
+COPY --from=builder /src/cjdroute /cjdroute
+
+ENTRYPOINT ["/cjdroute", "--nobg"]
