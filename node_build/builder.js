@@ -681,7 +681,7 @@ var needsToLink = function (fileName, state) {
 var makeTime = function () {
     return function () {
         var oldTime = this.time || 0;
-        var newTime = this.time = new Date().getTime();
+        var newTime = this.time = new Date(0).getTime();
         return newTime - oldTime;
     };
 };

@@ -21,7 +21,7 @@ var Dns =  require('dns');
 var WAIT_TIME = 5000;
 var INTERVAL = 1000;
 
-var now = function () { return (new Date()).getTime(); };
+var now = function () { return (new Date(0)).getTime(); };
 var nowSeconds = function () { return Math.floor(now() / 1000); };
 
 var IP6_REGEX = new RegExp('^' + new Array(9).join(':[0-9a-f]{1,4}').substring(1) + '$');

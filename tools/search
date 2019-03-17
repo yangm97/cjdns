@@ -22,7 +22,7 @@ var Dns =  require('dns');
 var WAIT_TIME = 5000;
 var INTERVAL = 1000;
 
-var now = function () { return (new Date()).getTime(); };
+var now = function () { return (new Date(0)).getTime(); };
 var nowSeconds = function () { return Math.floor(now() / 1000); };
 
 var IP6_REGEX = new RegExp('^' + new Array(9).join(':[0-9a-f]{1,4}').substring(1) + '$');
@@ -65,7 +65,7 @@ var main = function (argv) {
 
     }).nThen(function (waitFor) {
 
-        var startTime = (new Date()).getTime();
+        var startTime = (new Date(0)).getTime();
         var timeOfFirstFind;
         var handleMessage = function (err, msg) {
             if (err) { throw err; }
@@ -76,7 +76,7 @@ var main = function (argv) {
             if (msg.complete === "1") {
                 cjdns.disconnect();
                 console.log("Done -- first result in " + (timeOfFirstFind - startTime) + "ms." +
-                            " total: " + ((new Date()).getTime() - startTime) + "ms.");
+                            " total: " + ((new Date(0)).getTime() - startTime) + "ms.");
                 return;
             }
 
@@ -88,7 +88,7 @@ var main = function (argv) {
             for (var i = 0; i < addresses.length; i++) {
                 if (equalsIp(target, addresses[i])) {
                     console.log("    found " + addresses[i]);
-                    if (!timeOfFirstFind) { timeOfFirstFind = (new Date()).getTime(); }
+                    if (!timeOfFirstFind) { timeOfFirstFind = (new Date(0)).getTime(); }
                 }
             }
         };
